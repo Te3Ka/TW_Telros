@@ -1,0 +1,53 @@
+POST localhost:8080/api/users/
+Authorization: Basic YWRtaW46YWRtaW4=
+Content-Type: application/json
+
+{
+  "lastName": "Novichikhin",
+  "firstName": "Ilya",
+  "middleName": "Vyacheslavovich",
+  "dateOfBirth": "1990-03-13",
+  "email": "79811131773@ya.ru",
+  "phoneNumber": "79811131773"
+}
+
+###
+POST localhost:8080/api/users/
+Authorization: Basic YWRtaW46YWRtaW4=
+Content-Type: application/json
+
+{
+  "lastName": "Agafonova",
+  "firstName": "Ekaterina",
+  "middleName": "Vladimirovna",
+  "dateOfBirth": "1994-02-20",
+  "email": "agafonovacat@mail.ru",
+  "phoneNumber": "79816984956"
+}
+
+###
+GET localhost:8080/api/users/
+Authorization: Basic YWRtaW46YWRtaW4=
+
+###
+GET localhost:8080/api/users/2
+Authorization: Basic YWRtaW46YWRtaW4=
+
+
+###
+PUT localhost:8080/api/users/1
+Authorization: Basic YWRtaW46YWRtaW4=
+Content-Type: application/json
+
+{
+  "lastName": "Novichikhin",
+  "firstName": "Ilya",
+  "middleName": "Vyacheslavovich",
+  "dateOfBirth": "1990-03-13",
+  "email": "79811131773@ya.ru",
+  "phoneNumber": "79811131773"
+}
+
+###
+DELETE localhost:8080/api/users/1
+Authorization: Basic YWRtaW46YWRtaW4=

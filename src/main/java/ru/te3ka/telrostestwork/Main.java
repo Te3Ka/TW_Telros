@@ -1,7 +1,12 @@
 package ru.te3ka.telrostestwork;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
 public class Main {
     public static void main(String[] args) {
-
+        SpringApplication application = new SpringApplication(AppConfig.class);
+        application.run(args);
     }
 }
