@@ -8,7 +8,8 @@ Content-Type: application/json
   "middleName": "Vyacheslavovich",
   "dateOfBirth": "1990-03-13",
   "email": "79811131773@ya.ru",
-  "phoneNumber": "79811131773"
+  "phoneNumber": "79811131773",
+  "pathToPhoto": ""
 }
 
 ###
