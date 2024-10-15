@@ -2,9 +2,14 @@ package ru.te3ka.telrostestwork.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import ru.te3ka.telrostestwork.entity.User;
 import ru.te3ka.telrostestwork.repository.UserRepository;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +19,7 @@ import java.util.Optional;
  */
 @Service
 public class UserService {
+    private static final String UPLOAD_PHOTO_DIR = "photos_dir/";
 
     @Autowired
     private UserRepository userRepository;
@@ -76,5 +82,27 @@ public class UserService {
      */
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+
+    public void updatePhoto(Long id, MultipartFile file) throws IOException {
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+            Path filePath = Paths.get(UPLOAD_PHOTO_DIR + fileName);
+            Files.createDirectories(filePath.getParent());
+            Files.write(filePath, file.getBytes());
+
+            if (user.getPathToPhoto() != null && Files.exists(Paths.get(user.getPathToPhoto()))) {
+                Files.delete(Paths.get(user.getPathToPhoto()));
+            }
+
+            user.setPathToPhoto(filePath.toString());
+            userRepository.save(user);
+        } else {
+            throw new RuntimeException("User not found");
+        }
     }
 }
